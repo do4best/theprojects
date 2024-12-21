@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import Header from "../header.jsx";
+import Background from "../background.jsx";
 
 function SignupPage(props) {
     const [showPassword,setPassword] = useState(false)
     return (
         <>
 <Container>
+    <Background/>
 <div className="content">
-    <Header login={""}/>
+    <Header login/>
     <div className="body">
         <div className="text">
             <h1>Unlimited movies, Tv shows and more</h1>
@@ -37,7 +39,7 @@ const Container = styled.div`
         background-color: rgba(0,0,0,0.79);
         height: 100vh;
         width: 100vw;
-        grid-template-columns: 15vh 85vh;
+        grid-template-columns: 15vh 90vh;
         .body{
             display: flex;
             flex-direction: column;
@@ -54,29 +56,35 @@ const Container = styled.div`
         h1{
             padding: 0 25rem;
             
+            font-size: 6rem;
+            
         }
         h4{
             margin-top: -1.5rem;
+            font-size: 3rem;
         }
         h6{
-            margin-top: -1.5rem;
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
         }
         .form{
             display: grid;
-            width: 60%;
+            width: 48%;
+            margin-top: 2rem;
             grid-template-columns: ${({showPassword})=>showPassword?"1fr 1fr":"2fr 2fr"};
             input{
+                
                 color: black;
                 padding: 1.5rem;
                 font-size: 1.2rem;
                 width: 45rem;
                 &:focus{
                     outline: none;
-                }
+                
             }
             button{
                 padding: 0.5rem 1rem;
-                background-color: red;
+                background: red;
                 border: none;
                 cursor: pointer;
                 font-size: 1.05rem;
