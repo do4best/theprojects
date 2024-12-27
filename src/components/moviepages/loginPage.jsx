@@ -3,8 +3,24 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import Header from "../header.jsx";
 import Background from "../background.jsx";
+import {signInWithEmailAndPassword,onAuthStateChanged} from 'firebase/auth'
+import {firebaseAuth} from "../store/utils/firebase-config.js";
+import {useNavigate} from "react-router-dom";
 
 function LoginPage(props) {
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    const navigate = useNavigate()
+    const handelLogin=async ()=>{
+        try{
+            await signInWithEmailAndPassword(firebaseAuth,email,password)
+        }catch(error){
+            console.log(error)
+        }
+    }
+    onAuthStateChanged(firebaseAuth,(currenUser)=>{
+        if(currenUser)navigate("/")
+    })
     return (
         <>
         <Wrapper>
@@ -19,10 +35,12 @@ function LoginPage(props) {
             </div>
             <div className="container">
                 <input type="text"
-                       placeholder={"email"}/>
+                       placeholder={"email"} onChange={(e)=>setEmail(e.target.value)}
+                value={email}/>
                 <input type="password"
-                       placeholder={"password"}/>
-                <button>Login</button>
+                       placeholder={"password"} onChange={(e)=>setPassword(e.target.value)}
+                value={password}/>
+                <button onClick={handelLogin}>Login</button>
             </div>
         </div>
 
