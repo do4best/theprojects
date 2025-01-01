@@ -43,38 +43,67 @@ function NavLink(props) {
     );
 }
 const NaveContainer = styled.div`
-  
-    background-color: black;
     display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
+  
+   .notScrolled{
+       display: flex;
+   }
+    .scrolled{
+        display: flex;
+        background-color: black;
+    }
+    .nav{
+        position: sticky;
+        top:0;
+        height: 6rem;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0.4rem;
+        align-items: center;
+        transition: 0.3s ease-in-out;        
+    }
+    .leftside{
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-left: 5rem;
+    }
     .logo{
-   height: 150px;
-        width: 400px;
+   display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .links{
-        display: flex;
-        padding: 50px;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content:start;
-        position: absolute;
-        top: 5px;
-        margin-top: 10px;
-        gap: 15px;
-        margin-left: 400px;
-        font-size: 18px;
-        color: white;
-        text-decoration: none;
+       display: flex;
         list-style: none;
+        gap: 3rem;
+        li{
+            a{
+                color: white;
+                text-decoration: none;
+            }
+            
+        }
     }
     .rightside{
-        position: absolute;
-        right: 2px;
-        margin-top: 20px;
-        padding: 20px;
-       color: red;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-right: 1rem;
+        button{
+            background-color: red;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+        }&:focus{
+        outline: none;
+         }
+        svg{
+            color: white;
+            font-size: 2rem;
+        }
         
     }
 `

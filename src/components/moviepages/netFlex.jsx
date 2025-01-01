@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import hero from './hero.jpg'
 import NavLink from "./navLink.jsx";
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
 function NetFlex(props) {
     const[secrol,setScrol] =useState(false)
     window.onscroll=()=>{
         setScrol(window.pageYOffset === 0 ? false:true)
         return ()=>(window.onscroll = null)
     }
-    console.log(secrol)
+    const navigate = useNavigate()
     return (
         <>
             <HeroContainer>
@@ -21,7 +22,7 @@ function NetFlex(props) {
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae deserunt esse harum impedit labore laborum maxime nulla, praesentium saepe unde?</p>
                     </div>
                     <div className="buttons">
-                        <button className="playBtn">Play</button>
+                        <button onClick={()=>navigate('/player')} className="playBtn">Play</button>
                         <button className="playMore">More</button>
                     </div>
                 </div>
