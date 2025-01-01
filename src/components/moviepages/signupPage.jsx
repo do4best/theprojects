@@ -10,7 +10,7 @@ import {Navigate,useNavigate} from "react-router-dom";
 function SignupPage(props) {
     const [showPassword,setPassword] = useState(false)
     const [formValue,setFormValue] = useState({email:"",password:""})
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const handelSignIn = async()=>{
         try{
@@ -21,9 +21,9 @@ function SignupPage(props) {
 
         }
     }
-    // onAuthStateChanged(firebaseAuth,(currenUser)=>{
-    //     if(currenUser)navigate("/")
-    // })
+    onAuthStateChanged(firebaseAuth,(currenUser)=>{
+        if(currenUser)navigate("/")
+    })
     return (
         <>
 <Container>
