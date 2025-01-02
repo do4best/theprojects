@@ -3,6 +3,7 @@ import hero from './hero.jpg'
 import NavLink from "./navLink.jsx";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
+import Card from "./card.jsx";
 function NetFlex(props) {
     const[secrol,setScrol] =useState(false)
     window.onscroll=()=>{
@@ -28,6 +29,7 @@ function NetFlex(props) {
                 </div>
 
             </div>
+                <Card/>
             </HeroContainer>
         </>
     );
