@@ -1,11 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import hero from './hero.jpg'
 import NavLink from "./navLink.jsx";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import Card from "./card.jsx";
+import {useDispatch} from "react-redux";
+import {getGeneres} from "../store/index.js";
 function NetFlex(props) {
     const[secrol,setScrol] =useState(false)
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getGeneres())
+    }, []);
     window.onscroll=()=>{
         setScrol(window.pageYOffset === 0 ? false:true)
         return ()=>(window.onscroll = null)
