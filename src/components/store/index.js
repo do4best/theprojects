@@ -1,6 +1,6 @@
 import {configureStore,createAsyncThunk,createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { options} from "./utils/constant.js";
+import {MOVIE_BASE_URL, options} from "./utils/constant.js";
 
 const initialState = {
     movies:[],
@@ -8,22 +8,20 @@ const initialState = {
     genres:[]
 };
 export const getGeneres = createAsyncThunk("netflex/generes",async ()=>{
-   const {data:{genres}} =
-       fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
-           .then(res => res.json())
-           .then(res => console.log(res))
-           .catch(err => console.error(err));
-   console.log(genres)
+    const {data:{genres}} = await axios.get(`${MOVIE_BASE_URL}genre/movie/list?language=en`,options);
+
+
+
    return genres;
 })
 
 const arrayofMoviesData = (array,moviesArray,genres)=>{
     array.forEach((movie)=>{
-        const moviesArray = []
+        const moviesGenres = []
         movie.genre_id.forEach((genere)=>{
             const name = genere.find(({id})=> id === genere)
             if(name)
-                moviesArray.push(name.name)
+                moviesGenres.push(name.name)
         })
         if(movie.backdrop_path)
             moviesArray.push({
@@ -43,8 +41,9 @@ const getMovieData = async (api,genres,paging=false)=>{
     return movieArray
 }
 export const fetchMovies = createAsyncThunk("netflex/trending", async ({type},myTank)=>{
-    const {netflex:{generes},} = myTank.getState();
-    const data = getMovieData(`https://api.themoviedb.org/3/genre/movie/list?language=en`)
+    const {netflex:{genres},} = myTank.getState();
+    const data = getMovieData(`${MOVIE_BASE_URL}trending/all/day/?language=en-US${type}`,genres,true,options)
+   console.log(data)
 })
 const netFlexSlice = createSlice({
     name:"NetFlex",

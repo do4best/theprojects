@@ -4,15 +4,22 @@ import NavLink from "./navLink.jsx";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import Card from "./card.jsx";
-import {useDispatch} from "react-redux";
-import {getGeneres} from "../store/index.js";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchMovies, getGeneres} from "../store/index.js";
 function NetFlex(props) {
     const[secrol,setScrol] =useState(false)
+
+    const generesLoad = useSelector((state)=>state.netflex.generesLoads)
 
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getGeneres())
     }, []);
+    useEffect(() => {
+        if(generesLoad){
+            dispatch(fetchMovies({type:"all"}))
+        }
+    }, );
     window.onscroll=()=>{
         setScrol(window.pageYOffset === 0 ? false:true)
         return ()=>(window.onscroll = null)
