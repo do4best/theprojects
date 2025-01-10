@@ -13,3 +13,14 @@ body{
     z-index: -1;
     filter: brightness(30%);
 }
+
+h1{
+    letter-spacing: 0.252em;
+    font-size: 46px;
+    color: white;
+}
+header{
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
