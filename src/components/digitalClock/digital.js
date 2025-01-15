@@ -16,3 +16,6 @@ hourElement.textContent = hour;
 }
 
 setInterval(updateTime,1000)
+function getRandomColor(){
+    
+}
