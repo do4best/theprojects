@@ -15,8 +15,8 @@ function MainUseReducers(props) {
     return (
         <>
         <h1>{state}</h1>
-            <button onClick={()=>dispatch({type:'increment'})}>+</button>
-            <button onClick={()=>dispatch({type:'decrement'})}>-</button>
+            <button className={"btn btn-primary"} onClick={()=>dispatch({type:'increment'})}>+</button>
+            <button className={"btn btn-primary"} onClick={()=>dispatch({type:'decrement'})}>-</button>
 
         </>
     );
