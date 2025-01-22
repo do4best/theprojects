@@ -16,6 +16,7 @@ function TodoForm({getNewlyCreatedItem}) {
         const {value} = e.target;
         setInputValue(value)
 
+
     }
     return (
         <>
