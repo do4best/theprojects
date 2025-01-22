@@ -5,7 +5,7 @@ function MainPageLayout(props) {
     const {theme} = useContext(ThemeContext)
     return (
         <>
-            <div style={{backgroundColor : theme.backgroundColor, color : theme.color}} className={"h-svh"}>
+            <div style={{backgroundColor : theme.backgroundColor, color : theme.color}} className={"h-svh flex flex-col justify-between items-center "}>
 
         <h1>Main Page Layout</h1>
             <header>Header</header>
