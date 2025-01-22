@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 
 
 const themes ={
@@ -22,13 +22,14 @@ const initialState ={
 
 
 
+const ThemeContext = createContext("our theme object")
 
-const ThemeContext = useContext("our theme object")
-const ThemeProvider = ({childern}) =>{
+const ThemeProvider = ({children}) =>{
+
     const [isDarkTheme,setIsDarkTheme] = useState(false)
     useEffect(() => {
         const extraDarkThemeFlag = JSON.parse(localStorage.getItem('isDarkTheme'))
-        setIsDarkTheme(extraDarkThemeFlag)
+        setIsDarkTheme(extraDarkThemeFlag !== null ? extraDarkThemeFlag : false)
     }, []);
     const handelToggleIcon=()=>{
         const updateDarkTheme  = !isDarkTheme;
@@ -38,17 +39,13 @@ const ThemeProvider = ({childern}) =>{
     const theme = isDarkTheme ? themes.dark : themes.light;
     return(
         <ThemeContext.Provider value={{theme,handelToggleIcon,isDarkTheme}}>
-            {childern}
+            {children}
         </ThemeContext.Provider>
 
             )
             }
 
 
-function Themecontext(props) {
-    return (
-        <></>
-    );
-}
 
-export default ThemeProvider
+
+export  {ThemeProvider,ThemeContext}
