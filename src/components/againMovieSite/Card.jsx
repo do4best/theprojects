@@ -6,14 +6,14 @@ function Card({movie}) {
 const Image = `${small_base_url}${poster_path}`;
     return (
         <>
-        <div className="card card-side bg-base-100 shadow-xl">
+        <div className="card bg-base-100 w-96 shadow-xl ">
             <figure>
                 <img
                     src={Image}
-                    alt="Movie" />
+                    alt="Movie" className={"rounded"} />
             </figure>
             <div className="card-body">
-                <h2 className="card-title">{original_title}</h2>
+                <h2 className="card-title text-blue-700 font-bold">{original_title}</h2>
                 <p>{overview}</p>
                 <div className="card-actions justify-end">
 

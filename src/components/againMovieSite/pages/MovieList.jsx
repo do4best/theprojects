@@ -1,20 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Card from "../Card.jsx";
 
 import {api_key, now_playing} from "../apihandling/apiconfig.js";
 import {fetchMovies} from "../../store/index.js";
+import useFetch from "./useFetch.jsx";
 
-function MovieList(props) {
-    const [movies,setMovies] = useState([])
-    useEffect(() => {
-        async function fetchMovies(){
-            const response = await fetch(`${now_playing}movie/upcoming?${api_key}`);
-            const data = await response.json();
-            setMovies(data.results)
-        }
-            fetchMovies()},
+function MovieList({apiPath}) {
 
-            []);
+
+ const {data:movies} = useFetch(apiPath)
     return (
         <>
             <main>

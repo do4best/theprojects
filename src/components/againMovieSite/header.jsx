@@ -2,17 +2,31 @@ import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {MdDarkMode} from "react-icons/md";
 import {FiSun} from "react-icons/fi";
+import Model from "../popupProject/model.jsx";
 
 function Header(props) {
+    const [showModel,setShowModel] = useState(false)
     const [hidden,setHidden] = useState(false)
     const [darkMode,setDarkMode] = useState(localStorage.getItem("darkMode")?localStorage.getItem("darkMode"):"light")
+    // function getRandomColor(){
+    //     let letters = "0123456789";
+    //     let color = '#';
+    //     for(let i=0; i<6; i++){
+    //         color += letters[Math.floor(Math.random() * 16)];
+    //     }
+    //     return color;
+    // }
     useEffect(() => {
         localStorage.setItem("darkMode",darkMode)
         const localTheme = localStorage.getItem("darkMode")
         document.querySelector("html").setAttribute("data-theme",localTheme)
     }, [darkMode]);
     const handelToggle=(e)=>{
-        (e.target.checked?setDarkMode("light"):setDarkMode("dark"))
+        if(e.target.checked){
+
+        setDarkMode("light")}else{
+
+        setDarkMode("darkMode")}
 
 
 
@@ -64,7 +78,7 @@ function Header(props) {
                         <li><NavLink to={"/movies/top"}>Top</NavLink></li>
                         <li><NavLink to={"/movies/upcoming"}>Upcoming</NavLink></li>
                         <li><label className={"absolute right-15"}>
-                            <input type="checkbox" onChange={handelToggle}/>
+                            <input type="checkbox" onChange={handelToggle} />
                             {darkMode?<MdDarkMode size={25}/>:<FiSun size={25}/>}
 
                         </label></li>
@@ -75,9 +89,11 @@ function Header(props) {
                     </div>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <button onClick={()=>setShowModel(true)} className="bg-indigo-500 px-4 py-2 rounded-lg text-lg ">Email </button>
                 </div>
+
             </div>
+            {/*{showModel && <Model onClose={()=>setShowModel(true)}/>}*/}
 
         </>
     );

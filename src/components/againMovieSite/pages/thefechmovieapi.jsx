@@ -3,7 +3,7 @@ import {api_key, now_playing} from "../apihandling/apiconfig.js";
 
 function Thefechmovieapi({apiPath},queryTerm="") {
     const [data,setData] = useState([])
-const url =`${now_playing}${api_key}&query=${queryTerm}`;
+const url =`${now_playing}${api_key}`;
     useEffect(() => {
         async function fetchMovies(){
             const response = await fetch();
