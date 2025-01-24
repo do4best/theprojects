@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {api_key, now_playing} from "../apihandling/apiconfig.js";
 
-function UseFetch(apiPath) {
+function UseFetch(apiPath,queryTerm="") {
     const [data,setData] = useState([])
     const url =`${now_playing}${apiPath}${api_key}`
     useEffect(() => {
