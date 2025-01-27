@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-function TodoForm({getNewlyCreatedItem}) {
+function TodoForm({editData,getNewlyCreatedItem}) {
 
     const [inputValue,setInputValue] = useState("")
     const handelSubmit=(e)=>{
@@ -18,6 +18,9 @@ function TodoForm({getNewlyCreatedItem}) {
 
 
     }
+    useEffect(()=>{
+        if(editData && Object.keys(editData).length  !== 0)setInputValue(editData)
+    },[editData])
     return (
         <>
 
