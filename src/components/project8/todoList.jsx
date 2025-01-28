@@ -11,7 +11,10 @@ const handelmodifytodo =(todosone)=>{
         if(indexoflatesttodos === -1){
             newtodos.push(todosone)
         }else{
-
+newtodos[indexoflatesttodos] ={
+    ...newtodos[indexoflatesttodos],
+    text : todosone.text
+}
         }
         setTodos(newtodos)
     console.log(todos)
