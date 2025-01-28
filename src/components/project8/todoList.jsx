@@ -22,11 +22,16 @@ newtodos[indexoflatesttodos] ={
 const getEdittodoDate=(edit)=>{
 setEditData(edit)
 }
+const  handelDelete=(iddelete)=>{
+        let deleteid = [...todos];
+        deleteid = deleteid.filter((item)=>item.id!==iddelete);
+        setTodos(deleteid)
+}
 
     return (
         <>
         <TodoForm editData={editData} getNewlyCreatedItem = {handelmodifytodo}/>
-        <TodoItems getEdittodoDate={getEdittodoDate} todos={todos}/> </>
+        <TodoItems getIDtobeDeleted={handelDelete} getEdittodoDate={getEdittodoDate} todos={todos}/> </>
     );
 }
 

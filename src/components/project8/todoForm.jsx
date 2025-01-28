@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from 'react';
 
 function TodoForm({editData,getNewlyCreatedItem}) {
-
+    // const isEdit = editData && Object.keys(editData).length !== 0;
+    const [isEdit , setIsEdit] = useState(false);
     const [inputValue,setInputValue] = useState("")
     const handelSubmit=(e)=>{
         e.preventDefault()
-        const isEdit = editData && Object.keys(editData).length !== 0;
+
         const newlyCreatedTodo = {
             id: isEdit ? editData.id: Math.floor(Math.random()*1000),
             text : inputValue
         }
         getNewlyCreatedItem(newlyCreatedTodo)
         setInputValue("")
+        setIsEdit(false)
 
     }
     const handelInputChange=(e)=>{
@@ -21,7 +23,10 @@ function TodoForm({editData,getNewlyCreatedItem}) {
 
     }
     useEffect(()=>{
-        if(editData && Object.keys(editData).length  !== 0)setInputValue(editData.text)
+        if(editData && Object.keys(editData).length  !== 0){
+            setInputValue(editData.text);
+            setIsEdit(true)
+        }
     },[editData]);
 
     return (
