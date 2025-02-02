@@ -3,23 +3,23 @@ import TodoForm from "./todoForm.jsx";
 import TodoItems from "./todoItems.jsx";
 
 function TodoList(props) {
-    const [todos,setTodos] = useState([])
-    const [editData, setEditData] = useState(null)
-    const [searchParams, setSearchParams] = useState("")
-const handelmodifytodo =(todosone)=>{
-        const newtodos = [...todos];
-        const indexoflatesttodos = newtodos.findIndex((item)=>item.id === todosone.id);
-        if(indexoflatesttodos === -1){
-            newtodos.push(todosone)
+    const [todos,setTodos] = useState([]) // any array
+    const [editData, setEditData] = useState(null) // a state
+    const [searchParams, setSearchParams] = useState("")  // i think it is for search
+const handelmodifytodo =(todosone)=>{  // a function for handel modifies which will be handle
+        const newtodos = [...todos];  // parameter is destructured in new new todovariable
+        const indexoflatesttodos = newtodos.findIndex((item)=>item.id === todosone.id); // this variable is responsible for finding the index
+        if(indexoflatesttodos === -1){ // checking the condation if it is empty it will insert it
+            newtodos.push(todosone) // put the value  in the destructured variable
         }else{
-newtodos[indexoflatesttodos] ={
+newtodos[indexoflatesttodos] ={ // if the search item is already in the que find the index and return only text
     ...newtodos[indexoflatesttodos],
     text : todosone.text
 }
         }
-        setTodos(newtodos)
-   localStorage.setItem('todoList',JSON.stringify(newtodos))
-}
+        setTodos(newtodos) // destructured newtodos should be placed in Set todos
+   localStorage.setItem('todoList',JSON.stringify(newtodos))  // and moreover it should be store in local storage via setitme and should be in the form of JSON
+} // end of handelmodified todo
 const getEdittodoDate=(edit)=>{
 setEditData(edit)
 }
